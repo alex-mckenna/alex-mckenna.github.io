@@ -1,0 +1,4 @@
+baseURL = 'https://partially-applied.com/'
+locale = 'en-GB'
+title = 'Partially Applied'
+theme = 'papermod'
