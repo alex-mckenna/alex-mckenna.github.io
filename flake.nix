@@ -15,16 +15,16 @@
     packages = {
       default = pkgs.stdenvNoCC.mkDerivation {
         name = "partially-applied.com";
+        version = "2026-05-09";
         src = self;
 
-        buildPhase = ''
-          ${pkgs.hugo}/bin/hugo
-          ${pkgs.prettier}/bin/prettier -w public '!**/*.{css,js}'
-        '';
-
         nativeBuildInputs = [
-          pkgs.tailwindcss_4
+          pkgs.zola
         ];
+
+        buildPhase = ''
+          zola build
+        '';
 
         installPhase = ''
           cp -r public $out
@@ -34,10 +34,8 @@
 
     devShells = {
       default = pkgs.mkShell {
-        buildInputs = [
-          pkgs.hugo
-          pkgs.prettier
-          pkgs.tailwindcss_4
+        packages = [
+          pkgs.zola
         ];
       };
     };

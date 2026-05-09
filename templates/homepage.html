@@ -1,0 +1,13 @@
+{% extends "apollo/templates/homepage.html" %}
+
+{% block main_content %}
+  {{ self::home_page(section=section) }}
+
+  {% set section = get_section(path="posts/_index.md") %}
+  {% if section.pages %}
+    <h1>Recent Posts</h1>
+    <section class="post-list">
+      {{ post_macros::list_posts(pages=section.pages | slice(end=5)) }}
+    </section>
+  {% endif %}
+{% endblock main_content %}
